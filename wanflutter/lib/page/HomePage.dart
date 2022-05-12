@@ -9,6 +9,7 @@ import 'package:wanFlutter/page/common/Api.dart';
 import 'package:wanFlutter/page/entity/BannerEntity.dart';
 import 'package:wanFlutter/page/entity/article_entity.dart';
 import 'package:wanFlutter/page/http/NetWorkUtil.dart';
+import 'package:wanFlutter/page/util/ArticleUtil.dart';
 
 /**
  * 首页
@@ -100,7 +101,9 @@ class _HomePageState extends State<HomePage> {
                 delegate: SliverChildBuilderDelegate(
               (context, index) {
                 if (index == 0) return getBanner();
-                if (index < articleList.length - 1) return getRow(index);
+                if (index < articleList.length - 1)
+                  return ArticleUtil.getRow(index, context, articleList);
+                // getRow(index);
                 return null;
               },
               childCount: articleList.length + 1,
@@ -140,64 +143,6 @@ class _HomePageState extends State<HomePage> {
           print("click $index image");
         },
       ),
-    );
-  }
-
-  Widget getRow(int index) {
-    return GestureDetector(
-      child: Container(
-        padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-        child: ListTile(
-          leading: IconButton(
-            icon: articleList[index].collect
-                ? Icon(Icons.favorite, color: Theme.of(context).primaryColor)
-                : Icon(Icons.favorite_border),
-            tooltip: '收藏',
-            onPressed: () {
-              //收藏或去除收藏
-            },
-          ),
-          title: Text(
-            articleList[index].title,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-          ),
-          subtitle: Padding(
-            padding: EdgeInsets.only(top: 10),
-            child: Row(
-              children: [
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 6),
-                  decoration: BoxDecoration(
-                      border: Border.all(
-                          color: Theme.of(context).primaryColor, width: 1),
-                      borderRadius: BorderRadius.circular(20)),
-                  child: Text(
-                    articleList[index].superChapterName,
-                    style: TextStyle(color: Theme.of(context).primaryColor),
-                  ),
-                ),
-                Container(
-                    margin: EdgeInsets.only(left: 10),
-                    child: Text(articleList[index].author))
-              ],
-            ),
-          ),
-          trailing: Icon(Icons.chevron_right),
-        ),
-      ),
-      onTap: () {
-        //跳转
-        /*     Navigator.push(context,
-            builder: (context) => ArticleInfoPage(
-                title: articleList[index].title, url: articleList[index].link));*/
-
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (BuildContext context) {
-          return ArticleInfoPage(
-              title: articleList[index].title, url: articleList[index].link);
-        }));
-      },
     );
   }
 }

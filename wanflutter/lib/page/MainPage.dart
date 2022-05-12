@@ -18,8 +18,10 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(title: Text("wanFlutter")),
+        appBar: AppBar(title: Text("wanFlutter"), elevation: 0 //去除底部阴影
+            ),
         body: this._pageList[this._currentIndex],
         bottomNavigationBar: BottomNavigationBar(
           iconSize: 20,
