@@ -30,7 +30,7 @@ class CateGroyEntity {
 class CateGroyData {
   int? visible;
   List<CateGroyDataChild>? children;
-  String name='';
+  String name = '';
   bool? userControlSetTop;
   int? id;
   int? courseId;
@@ -41,7 +41,7 @@ class CateGroyData {
   CateGroyData(
       {this.visible,
       this.children,
-      this.name='',
+      this.name = '',
       this.userControlSetTop,
       this.id,
       this.courseId,

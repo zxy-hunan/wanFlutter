@@ -38,7 +38,8 @@ class _MainPageState extends State<MainPage> {
           items: [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: "首页"),
             BottomNavigationBarItem(icon: Icon(Icons.category), label: "分类"),
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: "设置"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.navigate_next), label: "导航"),
             BottomNavigationBarItem(icon: Icon(Icons.settings), label: "我")
           ],
         ),

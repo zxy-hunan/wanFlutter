@@ -10,7 +10,11 @@ class LoginPage extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           title: Text("登录"),
-          leading: Icon(Icons.arrow_back),
+          leading: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(Icons.arrow_back)),
           centerTitle: true,
         ),
         body: Container(

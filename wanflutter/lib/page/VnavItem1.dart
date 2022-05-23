@@ -52,6 +52,7 @@ class _NavItem1State extends State<NavItem1> {
             child: Container(
               color: Colors.white,
               child: ListView.builder(
+                itemCount: _datas.length,
                 itemBuilder: (BuildContext context, int index) {
                   //一级下标的内容
                   return getNavView(index);
@@ -97,7 +98,7 @@ class _NavItem1State extends State<NavItem1> {
           style: TextStyle(
             color: currentIndex == index
                 ? Theme.of(context).primaryColor
-                : Color(0xff666666),
+                : Colors.blue,
             fontWeight:
                 currentIndex == index ? FontWeight.w600 : FontWeight.w400,
             fontSize: 16,
@@ -113,6 +114,7 @@ class _NavItem1State extends State<NavItem1> {
   }
 
   getNavChildView(index) {
+    _updateArticles(index);
     return Wrap(
       spacing: 10,
       direction: Axis.horizontal,
@@ -120,7 +122,7 @@ class _NavItem1State extends State<NavItem1> {
       children: List.generate(articles.length, (int index) {
         return ActionChip(
             label: Text(articles[index].title,
-                style: TextStyle(fontSize: 16, color: Colors.black)),
+                style: TextStyle(fontSize: 16, color: Colors.white)),
             onPressed: () {
               //跳转
               Navigator.of(context)
@@ -130,8 +132,15 @@ class _NavItem1State extends State<NavItem1> {
               }));
             },
             elevation: 3,
-            backgroundColor: Colors.grey);
-      }),
+            backgroundColor: Colors.blue);
+      }).toList(),
     );
+  }
+
+  List<ArticleDataData> _updateArticles(int index) {
+    setState(() {
+      if (_datas.length != 0) articles = _datas[index].articles!;
+    });
+    return articles;
   }
 }
