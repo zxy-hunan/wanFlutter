@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'ArticleInfoPage.dart';
 import 'LoginPage.dart';
 
 class SettingPage extends StatefulWidget {
@@ -33,7 +34,14 @@ class _SettingPageState extends State<SettingPage> {
               leading: Icon(Icons.info_outline),
               title: Text("关于"),
               trailing: Icon(Icons.chevron_right),
-              onTap: () {}),
+              onTap: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (BuildContext context) {
+                  return ArticleInfoPage(
+                      title: '关于我',
+                      url: 'https://github.com/zxy-hunan/wanFlutter');
+                }));
+              }),
           ListTile(
               leading: Icon(Icons.info_outline),
               title: Text("登录"),
